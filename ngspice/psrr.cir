@@ -1,0 +1,21 @@
+* PSRR: 1 V AC on the input, PSRR(dB) = -dB(Vout)
+.include ldo_core.inc
+VIN vin 0 DC 5 AC 1
+VINJ fbx ein 0
+ILOAD out 0 100m
+.control
+ac dec 50 10 10Meg
+let psrr = -db(v(out))
+meas ac p100 find psrr at=100
+meas ac p1k find psrr at=1k
+meas ac p10k find psrr at=10k
+meas ac p100k find psrr at=100k
+meas ac pmin min psrr
+wrdata psrr_100m.txt psrr
+alter ILOAD dc=1m
+ac dec 50 10 10Meg
+let psrr = -db(v(out))
+meas ac q1k find psrr at=1k
+wrdata psrr_1m.txt psrr
+.endc
+.end

@@ -1,0 +1,17 @@
+* Load step 1 mA -> 100 mA -> 1 mA, 1 us edges
+.include ldo_core.inc
+VIN vin 0 5
+VINJ fbx ein 0
+ILOAD out 0 PULSE(1m 100m 100u 1u 1u 400u 1m)
+.control
+tran 20n 900u 0 50n
+meas tran vpre find v(out) at=99u
+meas tran vmin min v(out) from=100u to=200u
+meas tran vfinal find v(out) at=490u
+meas tran vmax max v(out) from=501u to=700u
+meas tran vend find v(out) at=890u
+let band = 0.001*3.288
+meas tran trec when v(out)=vfinal-band rise=last from=100u to=490u
+wrdata tran_out.txt v(out)
+.endc
+.end

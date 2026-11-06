@@ -1,0 +1,20 @@
+* DC: output voltage, load regulation, dropout
+.include ldo_core.inc
+VIN vin 0 5
+VINJ fbx ein 0
+ILOAD out 0 1m
+.control
+op
+print v(out) v(gate)
+dc ILOAD 1m 100m 1m
+meas dc v1m find v(out) at=1m
+meas dc v100m find v(out) at=100m
+let lr = v1m - v100m
+print lr
+alter ILOAD dc=100m
+dc VIN 5 2.5 -0.005
+let drop = v(vin) - v(out)
+meas dc vin_drop when v(out)=3.2549 fall=1
+meas dc vout_at3p4 find v(out) at=3.4
+.endc
+.end
