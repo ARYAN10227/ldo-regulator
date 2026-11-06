@@ -1,0 +1,15 @@
+* LDO | Loop gain by Middlebrook voltage injection at 1 mA and 100 mA (ESR = 0.5 ohm)
+* VINJ sits between the divider tap (fbx, low Z) and the error-amp input (ein, high Z).
+* Plot the expression  -V(fbx)/V(ein)  . Phase margin = 180 + phase at the 0 dB crossing.
+* Open in LTspice (File > Open, file type *.cir) and Run. Keep ldo_core.inc in the same folder.
+* After running: View > SPICE Error Log shows the .meas results.
+.include ldo_core.inc
+.param IL=1m
+VIN vin 0 5
+VINJ fbx ein DC 0 AC 1
+ILOAD out 0 {IL}
+.step param IL list 0 1m 10m 100m
+.ac dec 100 0.1 100Meg
+.meas AC fc WHEN mag(-V(fbx)/V(ein))=1 FALL=LAST
+.meas AC T_at_fc FIND -V(fbx)/V(ein) AT=fc
+.end

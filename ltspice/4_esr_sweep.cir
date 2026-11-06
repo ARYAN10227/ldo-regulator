@@ -1,0 +1,14 @@
+* LDO | Stability vs output-capacitor ESR at 100 mA (worst case at high ESR). Change IL to 0 for the low-ESR edge.
+* Phase margin per step = 180 + phase of T_at_fc (Error Log > right-click > Plot .step'ed .meas data).
+* Open in LTspice (File > Open, file type *.cir) and Run. Keep ldo_core.inc in the same folder.
+* After running: View > SPICE Error Log shows the .meas results.
+.include ldo_core.inc
+.param IL=100m
+VIN vin 0 5
+VINJ fbx ein DC 0 AC 1
+ILOAD out 0 {IL}
+.step dec param RESR 0.01 10 8
+.ac dec 100 0.1 100Meg
+.meas AC fc WHEN mag(-V(fbx)/V(ein))=1 FALL=LAST
+.meas AC T_at_fc FIND -V(fbx)/V(ein) AT=fc
+.end

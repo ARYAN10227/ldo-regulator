@@ -1,0 +1,11 @@
+* LDO | Dropout at 100 mA: sweep VIN down, find where VOUT falls 1% below nominal (3.288 V)
+* Open in LTspice (File > Open, file type *.cir) and Run. Keep ldo_core.inc in the same folder.
+* After running: View > SPICE Error Log shows the .meas results.
+.include ldo_core.inc
+VIN vin 0 5
+VINJ fbx ein 0
+ILOAD out 0 100m
+.dc VIN 5 2.5 -5m
+.meas DC vin_drop FIND V(vin) WHEN V(out)=3.2549 FALL=1
+.meas DC dropout PARAM vin_drop-3.2549
+.end

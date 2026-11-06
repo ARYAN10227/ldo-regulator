@@ -1,0 +1,12 @@
+* LDO 5 V -> 3.3 V, 100 mA | DC load regulation (sweep load 1 mA -> 100 mA)
+* Open in LTspice (File > Open, file type *.cir) and Run. Keep ldo_core.inc in the same folder.
+* After running: View > SPICE Error Log shows the .meas results.
+.include ldo_core.inc
+VIN vin 0 5
+VINJ fbx ein 0
+ILOAD out 0 1m
+.dc ILOAD 1m 100m 0.5m
+.meas DC v1m FIND V(out) AT=1m
+.meas DC v100m FIND V(out) AT=100m
+.meas DC loadreg PARAM v1m-v100m
+.end
