@@ -1,0 +1,6 @@
+*.txt
+*.raw
+*.log
+_run.cir
+__pycache__/
+.DS_Store
