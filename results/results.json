@@ -1,0 +1,50 @@
+{
+  "vout_1mA": 3.287699,
+  "vout_100mA": 3.287457,
+  "load_reg_mV": 0.2420000000000755,
+  "dropout_mV_100mA": 210.74500000000018,
+  "pm_vs_load": {
+    "0 mA": {
+      "pm_deg": 58.6,
+      "fc_kHz": 3.2
+    },
+    "0.1 mA": {
+      "pm_deg": 78.4,
+      "fc_kHz": 8.4
+    },
+    "1 mA": {
+      "pm_deg": 90.1,
+      "fc_kHz": 25.5
+    },
+    "10 mA": {
+      "pm_deg": 92.4,
+      "fc_kHz": 97.2
+    },
+    "50 mA": {
+      "pm_deg": 77.8,
+      "fc_kHz": 236.0
+    },
+    "100 mA": {
+      "pm_deg": 69.7,
+      "fc_kHz": 324.9
+    }
+  },
+  "esr_stable_range_ohm_pm45": [
+    0.1,
+    1.3335
+  ],
+  "psrr_dB": {
+    "100mA_100Hz": 97.2986,
+    "100mA_1kHz": 78.39864,
+    "100mA_10kHz": 71.1716,
+    "100mA_100kHz": 59.47101,
+    "1mA_1kHz": 97.77951
+  },
+  "load_step": {
+    "undershoot_mV": 50.38205000000006,
+    "recover_to_1pct_us": 1.5749999999999977,
+    "recover_to_10mV_us": 70.375,
+    "recover_to_1mV_us": 241.775,
+    "overshoot_on_unload_mV": 33.81597000000003
+  }
+}
