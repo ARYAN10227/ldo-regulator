@@ -21,3 +21,5 @@ RF2 fbx 0 100k
 * Output capacitor with ESR
 COUT out cesr {COUT}
 RESR cesr 0 {RESR}
+* Starting guess for the DC operating point (helps LTspice converge; does not change results)
+.nodeset V(out)=3.288 V(fbx)=1.2 V(ein)=1.2 V(gate)=3.9 V(ea2)=3.9 V(ea1)=1.1 V(ez)=1.1 V(cesr)=0
